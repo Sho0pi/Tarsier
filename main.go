@@ -8,7 +8,9 @@ import (
 )
 
 const (
-	XEYES_PATH 		=	"/usr/bin/xeyes"
+	XEYES_PATH 			=	"/usr/bin/xeyes"
+
+	EXECUTION_INTERVAL 	= 	5
 )
 
 var (
@@ -71,4 +73,13 @@ func execute(timeout time.Duration) error{
 		}
 	}
 	return nil
+}
+
+/**
+ * @brief      Determines if for execution.
+ *
+ * @return     True if for execution, False otherwise.
+ */
+func isForExecution() bool {
+	return generateRandomSeed() % EXECUTION_INTERVAL == 0
 }
