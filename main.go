@@ -5,12 +5,14 @@ import (
 	"time"
 	"math/rand"
 	"os/exec"
+	"log"
 )
 
 const (
 	XEYES_PATH 			=	"/usr/bin/xeyes"
 
 	EXECUTION_INTERVAL 	= 	5
+	MAX_TIMEOUT 		= 	10
 )
 
 var (
@@ -18,7 +20,12 @@ var (
 )
 
 func main()	{
-
+	if isForExecution(){
+		time.Sleep(generateRandomTimeout(MAX_TIMEOUT) * time.Second)
+		if err := execute(generateRandomTimeout(MAX_TIMEOUT)); err != nil {
+			log.Fatal(err)
+		}
+	}
 }
 
 /**
